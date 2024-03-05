@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-
+import { v4 as uuidv4 } from "uuid";
 function App() {
   const [statements, setStatements] = useState([]);
   const [input, setInput] = useState({
@@ -40,6 +40,7 @@ function App() {
       setStatements([
         ...statements,
         {
+          id: uuidv4(),
           name: statement,
           amount: parseFloat(amount).toFixed(2),
           type: statementType,
@@ -90,8 +91,8 @@ function App() {
           <button onClick={handleAddNewStatement}>+</button>
         </div>
         <div>
-          {statements.map(({ name, type, amount, date }) => (
-            <div className="card">
+          {statements.map(({ name, type, amount, date, id }) => (
+            <div className="card" key={id}>
               <div className="card-info">
                 <h4>{name}</h4>
                 <p>{date}</p>
