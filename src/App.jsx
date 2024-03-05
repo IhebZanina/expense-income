@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 function App() {
@@ -17,6 +17,25 @@ function App() {
       ...input,
       [e.target.name]: e.target.value,
     });
+  };
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    const newTotal = statements.reduce((sum, { type, amount }) => {
+      if (type === "expense") {
+        return sum - parseFloat(amount);
+      } else return sum + parseFloat(amount);
+    }, 0);
+    setTotal(newTotal);
+  }, [statements]);
+
+  const renderTotal = () => {
+    if (total > 0) {
+      return <h1 className="total-text success">+{Math.abs(total)}</h1>;
+    } else if (total < 0) {
+      return <h1 className="total-text danger">-{Math.abs(total)}</h1>;
+    } else {
+      return <h1 className="total-text">{Math.abs(total)}</h1>;
+    }
   };
 
   const handleAddNewStatement = () => {
@@ -57,7 +76,7 @@ function App() {
   return (
     <main>
       <div>
-        <h1 className="total-text success">0</h1>
+        {renderTotal()}
         <div className="input-container">
           <input
             type="text"
@@ -81,7 +100,7 @@ function App() {
           />
 
           <select
-            onChange={{ handleUpdateInput }}
+            onChange={handleUpdateInput}
             value={input.statementType}
             name="statementType"
           >
