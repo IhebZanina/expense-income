@@ -1,9 +1,24 @@
 main {
   max-width: 500px;
   margin: 0 auto;
-  color: black;
 }
 
+select { 
+   width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input , button {
+  color: white;
+  border-radius: 5px;
+  height: 45px;
+  background-color: rgba(128, 128, 128, 0.32);
+  padding: 20px;
+}
 .total-text {
   font-size: 50px;
   margin: 10px 0;
@@ -30,7 +45,7 @@ button {
 }
 
 .card {
-  box-shadow: 0.1px 1px 3px rgba(0,0,0,0.27);
+  box-shadow: 0.1px 1px 3px rgb(255, 255, 255);
   padding: 10px;
   display: flex;
   justify-content: space-between;

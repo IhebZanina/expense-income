@@ -100,6 +100,7 @@ function App() {
           />
 
           <select
+            className="form-select"
             onChange={handleUpdateInput}
             value={input.statementType}
             name="statementType"
